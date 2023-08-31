@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    command: ./app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=localhost
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASS=123654
+      - DB_NAME=segments_service
+      - DB_SSLMODE=disable
+  db:
+    restart: always
+    image: postgres:latest
+    volumes:
+      - ./.database/data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123654
+      - POSTGRES_DB=segments_service
+    ports:
+      - "5432:5432"
+
