@@ -1,15 +1,15 @@
 version: '3.8'
 
 services:
-  app:
-    build: .
-    command: ./app
+  avito-backend-task:
+    build: ./
+    command: ./avito-backend-task
     ports:
-      - "8080:8080"
+      - 8080:8080
     depends_on:
       - db
     environment:
-      - DB_HOST=localhost
+      - DB_HOST=db
       - DB_PORT=5432
       - DB_USER=postgres
       - DB_PASS=123654
@@ -25,5 +25,4 @@ services:
       - POSTGRES_PASSWORD=123654
       - POSTGRES_DB=segments_service
     ports:
-      - "5432:5432"
-
+      - 5432:5432

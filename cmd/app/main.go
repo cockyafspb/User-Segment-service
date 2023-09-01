@@ -6,6 +6,7 @@ import (
 	"avito-backend-task/internal/repo/pgdb"
 	"avito-backend-task/internal/storage"
 	"github.com/gofiber/fiber/v2"
+	"github.com/joho/godotenv"
 	"gorm.io/gorm"
 	"log"
 	"os"
@@ -27,10 +28,10 @@ func MigrateDB(db *gorm.DB) {
 }
 
 func main() {
-	/*err := godotenv.Load(".env")
+	err := godotenv.Load(".env")
 	if err != nil {
 		log.Fatal(err)
-	}*/
+	}
 	config := &storage.Config{
 		Host:     os.Getenv("DB_HOST"),
 		Port:     os.Getenv("DB_PORT"),

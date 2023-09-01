@@ -1,15 +1,10 @@
 FROM golang:1.21-alpine
 
-WORKDIR /app
+ENV GOPATH=/
 
-COPY go.mod go.sum ./
+COPY ./ ./
 
 RUN go mod download
+RUN go build -o avito-backend-task ./cmd/app/main.go
 
-COPY . .
-
-RUN go build -o ./bin/app ./cmd/app/main.go
-
-EXPOSE 8080
-
-CMD "./bin/app"
+CMD ["./avito-backend-task"]
