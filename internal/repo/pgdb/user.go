@@ -69,7 +69,6 @@ func (r *UserRepo) DeleteUser(context *fiber.Ctx) error {
 	return nil
 }
 
-// TODO: потенциальная ошибка в связи с тем, что без id будут новый создаваться
 func (r *UserRepo) AddSegments(context *fiber.Ctx) error {
 	segments := entity2.SegmentsList{}
 	id := context.Params("id")
@@ -94,7 +93,7 @@ func (r *UserRepo) AddSegments(context *fiber.Ctx) error {
 
 	for _, v := range segments.Segments {
 		s := entity2.Segment{}
-		err = r.DB.Table("segments").Where("id = ?", v.ID).Where("slug = ?", v.Slug).Find(&s).Error
+		err = r.DB.Where("id = ? and slug = ?", v.ID, v.Slug).Find(&s).Error
 		if err != nil {
 			context.Status(http.StatusBadRequest).JSON(
 				&fiber.Map{"message": "no such segment here"})
@@ -118,7 +117,6 @@ func (r *UserRepo) AddSegments(context *fiber.Ctx) error {
 	return nil
 }
 
-// TODO: потенциальная ошибка в связи с тем, что без id будут новый создаваться
 func (r *UserRepo) RemoveSegments(context *fiber.Ctx) error {
 	segments := entity2.SegmentsList{}
 	id := context.Params("id")
