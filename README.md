@@ -1,7 +1,7 @@
 # Тестовое задание на стажировку Avito 2023
-## Запуск
-Для сборки проекта используется команда: docker-compose up --build
-## Методы
+## Launch
+To build the project, use the command: docker-compose up --build
+## Methods
 ### User Requests
 + POST http://localhost:8080/api/v1/create_user
 + DEL http://localhost:8080/api/v1/delete_user
